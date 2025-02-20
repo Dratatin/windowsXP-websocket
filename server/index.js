@@ -18,7 +18,7 @@ io.on('connection', (socket) => {
   console.log(`New client connected ${socket.id}`);
 
   socket.on('send_message', (data) => {
-    socket.broadcast.emit("receive_message", {
+    io.emit("receive_message", {
       userId: socket.id,
       message: data
     });
