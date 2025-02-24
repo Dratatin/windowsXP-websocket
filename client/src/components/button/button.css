@@ -1,0 +1,14 @@
+.button {
+    color: black;
+    text-transform: uppercase;
+    font-size: 12px;
+    background: linear-gradient(to bottom, #ffffff, #dcdcdc);
+    border: 2px solid #1D507E;
+    padding: 5px 30px;
+    border-radius: 0.3em;
+    box-shadow:
+      inset -2px -2px 0px #647EE8,
+      inset 2px 2px 0px #A9C6F0;
+    font-size: 20px;
+    line-height: 1;
+}

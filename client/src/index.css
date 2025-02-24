@@ -8,3 +8,22 @@ body {
   min-height: 100vh;
   font-family: 'Tahoma', sans-serif;
 }
+
+.font-display {
+  font-family: 'Tahoma', sans-serif;
+}
+
+.font-body {
+  font-family: 'Tahoma pixelised', sans-serif;
+  font-size: 20px;
+  line-height: 1;
+}
+
+
+input, textarea {
+  background-color: #fff;
+  font-size: 20px;
+  font-family: "Tahoma pixelised";
+  padding: 5px 10px;
+  line-height: 1;
+}

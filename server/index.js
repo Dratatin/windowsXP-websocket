@@ -13,13 +13,24 @@ const io = new Server (server, {
   },
 });
 
+const users = {};
+
 // Gestion des connexions WebSocket
+io.use((socket, next) => {
+  const username = socket.handshake.auth.username;
+  if (!username) {
+      return next(new Error("Nom d'utilisateur requis"));
+  }
+  socket.username = username;
+  next();
+});
+
 io.on('connection', (socket) => {
   console.log(`New client connected ${socket.id}`);
 
   socket.on('send_message', (data) => {
-    io.emit("receive_message", {
-      userId: socket.id,
+    socket.broadcast.emit('new_message', {
+      username: socket.username,
       message: data
     });
   })

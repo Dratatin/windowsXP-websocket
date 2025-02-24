@@ -14,54 +14,21 @@
   background-size: cover;
 }
 
-.chatbox {
-  margin-top: auto;
-  width: 400px;
-  max-height: 500px;
-  min-height: 300px;
-  height: 70vh;
-  background-color: #0053E5;
-  background-image: linear-gradient(#0053E5, #0026af);
-  border: 1px solid;
-  border-left-color: #0831D9;
-  border-top-color: #0831D9;
-  border-right-color: #00138C;
-  border-bottom-color: #00138C;
-  border-radius: 0.5em 0.5em 0.2em 0.2em;
-  padding: 0.4em;
+.connexion-dialog {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.chatbox-heading {
-  background-image:
-    linear-gradient(to right, #0053E5, transparent 5%, transparent 95%, #0053E5),
-    linear-gradient(#1777cf, #058ffe 2%, #058ffe 5%, #004be5 15%, #004be5 50%, #005fff 80%, #0044c5);
-  border-radius: 0.5em 0.5em 0 0;
-  cursor: grab;
-  display: flex;
-  column-gap: 2px;
-  padding: 0.5em;
-  user-select: none;
-  margin: -0.4em -0.4em 0;
-}
-
-.chatbox-title {
-  color: #fff;
-  font-weight: bold;
-}
-
-.chatbox-content {
-  height: 100%;
-  padding: 10px;
-  background-color: #ECE9D8;
+.connexion-dialog-infos {
+  padding: 20px;
+  margin: 3px 8px;
+  border: 2px solid #D0D0BF;
+  border-radius: .3rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
-  overflow: hidden;
-  box-shadow:
-    -3px 0px 1px #166AEE,
-    3px 0px 1px #074FEA,
-    0px 3px 1px #003DDC,
-    0px -3px 1px #0043CF;
 }
 
 .chatbox-messages {
@@ -75,6 +42,10 @@
   height: 100%;
   padding: 7px;
   position: relative;
+  width: 100%;
+  max-height: 300px;
+  min-height: 100px;
+  height: 60vh;
 }
 
 .chatbox-messages:before {
@@ -100,25 +71,10 @@
   line-height: 1;
   position: relative;
   z-index: 1;
+  text-align: left;
 }
 
-.chatbox-submit {
-  color: black;
-  text-transform: uppercase;
-  font-size: 12px;
-  background: linear-gradient(to bottom, #ffffff, #dcdcdc);
-  border: 2px solid #1D507E;
-  padding: 5px 30px;
-  border-radius: 0.3em;
-  box-shadow:
-    inset -2px -2px 0px #647EE8,
-    inset 2px 2px 0px #A9C6F0;
-  cursor: pointer;
-}
-
-.chatbox-input {
-  background-color: #fff;
-  padding: 5px 10px;
-  font-size: 20px;
-  font-family: "Tahoma pixelised";
+.chat {
+  filter: grayscale(0.3);
+  opacity: .7;
 }

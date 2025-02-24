@@ -1,0 +1,49 @@
+.tab {
+  margin-top: auto;
+  width: 400px;
+  background-color: #0053E5;
+  background-image: linear-gradient(#0053E5, #0026af);
+  border: 1px solid;
+  border-left-color: #0831D9;
+  border-top-color: #0831D9;
+  border-right-color: #00138C;
+  border-bottom-color: #00138C;
+  border-radius: 0.5em 0.5em 0.2em 0.2em;
+  padding: 0.3em;
+}
+
+.tabcontent {
+  height: 100%;
+  padding: 10px;
+  background-color: #ECE9D8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+  box-shadow:
+    -3px 0px 1px #166AEE,
+    3px 0px 1px #074FEA,
+    0px 3px 1px #003DDC,
+    0px -3px 1px #0043CF;
+}
+
+.tabhead {
+    background-image:
+      linear-gradient(to right, #0053E5, transparent 5%, transparent 95%, #0053E5),
+      linear-gradient(#1777cf, #058ffe 2%, #058ffe 5%, #004be5 15%, #004be5 50%, #005fff 80%, #0044c5);
+    border-radius: 0.5em 0.5em 0 0;
+    cursor: grab;
+    display: flex;
+    column-gap: 2px;
+    padding: 0.5em;
+    user-select: none;
+    margin: -0.3em -0.3em 0;
+    text-align: left;
+}
+
+.tabhead-title {
+    color: #fff;
+    font-weight: bold;
+}
+  
