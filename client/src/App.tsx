@@ -62,7 +62,7 @@ function App() {
 
   return (
     <div id='app' className="min-h-screen flex w-full justify-between p-10">
-      <Tab title='Chat' className='chat'>
+      <Tab title='Chat' className={`chat ${!connected ? 'chat--disabled' : ''}`}>
         <ul className='chatbox-messages'>
           <li className='chatbox-message chatbox-message--custom italic'>
             {connected ?
