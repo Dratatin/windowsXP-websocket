@@ -1,3 +1,5 @@
 import io from 'socket.io-client';
 
-export const socket = io('http://localhost:5000', { autoConnect: false });
+const SERVER_URL = import.meta.env.VITE_CORS_ORIGIN_SERVER;
+
+export const socket = io(SERVER_URL, { autoConnect: false });
