@@ -15,7 +15,7 @@ const io = new Server (server, {
 
 const users = {};
 
-// Gestion des connexions WebSocket
+// Exiger un nom d'utilisateur avant la suite de l'exécution du script
 io.use((socket, next) => {
   const username = socket.handshake.auth.username;
   if (!username) {
@@ -27,6 +27,10 @@ io.use((socket, next) => {
 
 io.on('connection', (socket) => {
   console.log(`New client connected ${socket.id}`);
+
+  socket.broadcast.emit('user_connected', {
+    username: socket.username,
+  });
 
   socket.on('send_message', (data) => {
     socket.broadcast.emit('new_message', {

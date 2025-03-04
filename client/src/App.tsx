@@ -10,6 +10,7 @@ type ActionState = {
 };
 
 type Message = {
+  type:'message' | 'newuser';
   username: string;
   message: string;
 }
@@ -24,10 +25,18 @@ function App() {
       setUserName(username);
       socket.connect()
     }
-  }
+  };
+
+  const onConnect = () => {
+    setConnected(true);
+  };
+
+  const onNewUserConnected = ({username} : {username: string}) => {
+    setChatMessages((prevMessages) => [...prevMessages, {type: 'newuser', username: username, message: `${username} vient de se connecter`}]);
+  };
 
   const onNewMessage = ({username, message} : {username: string, message: string}) => {
-    setMessages((prevMessages) => [...prevMessages, {username: username, message: message}]);
+    setChatMessages((prevMessages) => [...prevMessages, {type: 'message', username: username, message: message}]);
   };
 
   const sendMessage = async (prevState: ActionState, data: FormData): Promise<ActionState> => {
@@ -39,24 +48,22 @@ function App() {
     socket.emit("send_message", message);
     onNewMessage({username: "Toi", message: message });
     return { payload: message, message: "Message envoyé" };
-  }
+  };
 
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [chatMessages, setChatMessages] = useState<Message[]>([]);
   const [connected, setConnected] = useState(false);
   const [username, setUserName] = useState<null | string>(null);
   const [messageFormState, messageFormAction, messageFormIsPending] = useActionState(sendMessage, { payload: null, message: '' });
 
-  useEffect(() => {  
-    const onConnect = () => {
-      setConnected(true);
-    }
-  
+  useEffect(() => {    
     socket.on("new_message", onNewMessage);
     socket.on("connect", onConnect);
+    socket.on("user_connected", onNewUserConnected);
 
     return () => {
       socket.off("new_message", onNewMessage);
       socket.off("connect", onConnect);
+      socket.off("user_connected", onNewUserConnected);
     };
   }, []);
 
@@ -64,7 +71,7 @@ function App() {
     <div id='app' className="min-h-screen flex w-full justify-between p-10">
       <Tab title='Chat' className={`chat ${!connected ? 'chat--disabled' : ''}`}>
         <ul className='chatbox-messages'>
-          <li className='chatbox-message chatbox-message--custom italic'>
+          <li className='chatbox-message italic'>
             {connected ?
               <>
                 Bienvenue dans le chat <span>{username}</span> !
@@ -75,11 +82,16 @@ function App() {
               </>
             }
           </li>
-          {messages.map(({username, message}, index) => (
-            <li key={index} className='chatbox-message'>
-              <span>{username} : </span>
-              <span>{message}</span>  
-            </li>
+          {chatMessages.map(({type, username, message}, index) => (
+            type === 'message' ?
+              <li key={index} className='chatbox-message'>
+                <span>{username} : </span>
+                <span>{message}</span>  
+              </li>
+            : type === 'newuser' &&
+              <li key={index} className='chatbox-message italic'>
+                <span>{message}</span>
+              </li>
           ))}
         </ul>
         <form action={messageFormAction} className='flex gap-2 w-full'>
