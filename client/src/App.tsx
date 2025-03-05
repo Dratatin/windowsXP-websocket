@@ -100,17 +100,19 @@ function App() {
         </form>
       </Tab>
       <dialog open={!connected} className='bg-inherit connexion-dialog'>
-        <Tab title='Bienvenue !'>
-          <div className='connexion-dialog-infos'>
-            <p className='font-body text-balance'>
-              Veuillez renseigner votre nom d'utilisateur pour vous connecter à cette session de chat
-            </p>
-            <form onSubmit={connexion} className='flex flex-col gap-4 w-56' id='connexion-form'>
-              <input type='text' name='username' id='username' maxLength={10} placeholder='username' className='bg-white w-full mt-1' />
-            </form>
-          </div>
-          <Button content='Ok' className='m-auto' form='connexion-form'/>
-        </Tab>
+        <div className='connexion-dialog-inner'>
+          <Tab title='Bienvenue !'>
+            <div className='connexion-dialog-infos'>
+              <p className='font-body text-balance'>
+                Veuillez renseigner votre nom d'utilisateur pour vous connecter à cette session de chat
+              </p>
+              <form onSubmit={connexion} className='flex flex-col gap-4 w-56' id='connexion-form'>
+                <input type='text' name='username' id='username' maxLength={10} placeholder='username' className='bg-white w-full mt-1' />
+              </form>
+            </div>
+            <Button content='Ok' className='m-auto' form='connexion-form'/>
+          </Tab>
+        </div>
       </dialog>
     </div>
   )
